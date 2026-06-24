@@ -695,7 +695,7 @@
                 <div>
                     <h4 class="footer-heading">Contact Information</h4>
                     <ul class="footer-links">
-                        <li><a href="mailto:support@tutorconnect.demo"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> support@tutorconnect.demo</a></li>
+                        <li><a href="mailto:support@tutorconnect.demo"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> support@auratutor.demo</a></li>
                         <li><a href="tel:1234567890"><i class="fa-solid fa-phone" style="margin-right: 8px;"></i> +91 1234567890</a></li>
                     </ul>
                 </div>
@@ -752,63 +752,91 @@
     </div>
 
     <script>
-        // Modal Logic
-        const modal = document.getElementById('profileModal');
+    // Modal Logic
+    const modal = document.getElementById('profileModal');
 
-        function openModal() {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-        }
+    function openModal() {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
 
-        // Close modal when clicking outside the content
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    // DYNAMIC STATS CALCULATOR
+    const calculateStats = () => {
+        const cards = document.querySelectorAll('.teacher-card');
+        const totalTutors = cards.length;
+
+        // 1. Calculate Unique Subjects (ignoring N/A)
+        const subjects = new Set();
+        document.querySelectorAll('.teacher-subject').forEach(el => {
+            const text = el.innerText.trim().toUpperCase();
+            if (text && text !== 'N/A' && text !== 'NA') {
+                subjects.add(text);
             }
         });
+        const totalSubjects = subjects.size || 1; // Fallback to 1 if empty
 
-        // Close modal on Escape key press
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                closeModal();
+        // 2. Calculate Offline Support Percentage
+        let offlineCount = 0;
+        cards.forEach(card => {
+            if (card.innerText.includes('Offline')) {
+                offlineCount++;
             }
         });
+        const offlinePercentage = totalTutors > 0 ? Math.round((offlineCount / totalTutors) * 100) : 0;
 
-        // Animated Counters Logic
+        // 3. Inject these numbers into the data-target attributes
         const counters = document.querySelectorAll('.counter');
-        const speed = 200; // The lower the slower
+        if (counters[0]) counters[0].setAttribute('data-target', totalTutors);
+        if (counters[1]) counters[1].setAttribute('data-target', totalSubjects);
+        if (counters[2]) counters[2].setAttribute('data-target', offlinePercentage);
+    };
 
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const increment = target / speed;
+    // Animated Counters Logic
+    const speed = 200; 
+    const animateCounters = () => {
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / speed;
 
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + increment);
-                    setTimeout(animateCounters, 20);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        };
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(animateCounters, 20);
+            } else {
+                counter.innerText = target;
+            }
+        });
+    };
 
-        // Run animation when stats section is in view using Intersection Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
+    // Initialize stats and set up scroll observer
+    calculateStats();
 
-        document.querySelector('.stats-section') && observer.observe(document.querySelector('.stats-section'));
-    </script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    if (document.querySelector('.stats-section')) {
+        observer.observe(document.querySelector('.stats-section'));
+    }
+</script>
 </body>
 </html>
