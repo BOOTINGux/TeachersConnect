@@ -837,13 +837,13 @@
     if (document.querySelector('.stats-section')) {
         observer.observe(document.querySelector('.stats-section'));
     }
-    // 1. Grab the search input and the button
-const searchInput = document.querySelector('.search-input');
-const searchForm = document.querySelector('.search-form');
-const teacherCards = document.querySelectorAll('.teacher-card');
+        // 1. Grab the search input and the button
+    const searchInput = document.querySelector('.search-input');
+    const searchForm = document.querySelector('.search-form');
+    const teacherCards = document.querySelectorAll('.teacher-card');
 
 // 2. Listen for when the user submits the form
-searchForm.addEventListener('submit', function() {
+    searchForm.addEventListener('submit', function() {
     const searchTerm = searchInput.value.toLowerCase();
 
     // 3. Loop through all teacher cards and hide the ones that don't match
