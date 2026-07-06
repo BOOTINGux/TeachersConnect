@@ -508,28 +508,34 @@
         </div>
     </section>
 
+    <!-- Search & Filter Section -->
     <div class="container">
         <div class="search-filter-section">
-            <form class="search-form" onsubmit="event.preventDefault();">
+            <!-- Added filterTutors() execution on form submit -->
+            <form class="search-form" onsubmit="event.preventDefault(); filterTutors();">
                 <div class="input-group">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" class="search-input" placeholder="Search by subject or teacher name">
+                    <input type="text" class="search-input" id="teacherSearch" placeholder="Search by subject or teacher name" oninput="filterTutors()">
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-book"></i>
-                    <select class="filter-select">
+                    <!-- Added id and onchange trigger -->
+                    <select class="filter-select" id="subjectFilter" onchange="filterTutors()">
                         <option value="">Subject</option>
                         <option value="geography">Geography</option>
+                        <option value="bengali">Bengali</option>
                         <option value="mathematics">Mathematics</option>
                         <option value="physics">Physics</option>
                         <option value="chemistry">Chemistry</option>
                         <option value="biology">Biology</option>
                         <option value="english">English</option>
+                        <option value="computerscience">Computer Science</option>
                     </select>
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-person-chalkboard"></i>
-                    <select class="filter-select">
+                    <!-- Added id and onchange trigger -->
+                    <select class="filter-select" id="modeFilter" onchange="filterTutors()">
                         <option value="">Teaching Mode</option>
                         <option value="offline">Offline</option>
                         <option value="online">Online</option>
@@ -718,7 +724,7 @@
         <div class="teacher-header">
             <div>
                 <h3 class="teacher-name">Kaushik Bhowmick</h3>
-                <div class="teacher-subject">Maths(Till Class 10), Computer Science (Till Class 12)</div>
+                <div class="teacher-subject">Mathematics(Till Class 10), Computer Science (Till Class 12)</div>
             </div>
             <span class="badge">Available</span>
         </div>
@@ -823,7 +829,7 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('profileModal3')"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header">
-                <img src="https://ui-avatars.com/api/?name=Debashish+Paul&background=eff6ff&color=2563eb&size=200" alt="Debashish Paul" class="modal-avatar">
+                <img src="images/Debashsish Sir.jpeg" alt="Debashish Paul" class="modal-avatar">
                 <div>
                     <h2 class="teacher-name">Debashish Paul</h2>
                     <div class="teacher-subject">Bengali</div>
@@ -1006,6 +1012,38 @@
         }
     });
 });
+    // LIVE FILTERING LOGIC
+    function filterTutors() {
+        // Capture user input selections
+        const query = document.getElementById('teacherSearch').value.toLowerCase().trim();
+        const selectedSubject = document.getElementById('subjectFilter').value.toLowerCase();
+        const selectedMode = document.getElementById('modeFilter').value.toLowerCase();
+        
+        const cards = document.querySelectorAll('.teacher-card');
+        
+        cards.forEach(card => {
+            const name = card.querySelector('.teacher-name').innerText.toLowerCase();
+            const subject = card.querySelector('.teacher-subject').innerText.toLowerCase();
+            const cardText = card.innerText.toLowerCase();
+            
+            // Check matching status conditions
+            const matchesSearch = !query || name.includes(query) || subject.includes(query);
+            const matchesSubject = !selectedSubject || subject.includes(selectedSubject);
+            
+            let matchesMode = true;
+            if (selectedMode) {
+                // Evaluates if structural card details text incorporates matching configurations
+                matchesMode = cardText.includes(selectedMode);
+            }
+            
+            // Toggle element display visibilities dynamically 
+            if (matchesSearch && matchesSubject && matchesMode) {
+                card.style.display = ''; // Inherits default template presentation stylesheets
+            } else {
+                card.style.display = 'none'; // Conceals card layout matrix
+            }
+        });
+    }
 </script>
 </body>
 </html>
