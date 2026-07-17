@@ -71,6 +71,7 @@
             transition: var(--transition);
             border: none;
             font-size: 1rem;
+            text-align: center;
         }
 
         .btn-primary {
@@ -311,6 +312,10 @@
             gap: 12px;
         }
 
+        .card-actions .btn-primary {
+            flex: 1;
+        }
+
         /* Statistics Section */
         .stats-section {
             background-color: var(--primary-blue);
@@ -438,6 +443,8 @@
             transform: scale(0.9);
             transition: var(--transition);
             box-shadow: var(--shadow-lg);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .modal-overlay.active .modal-content {
@@ -517,6 +524,11 @@
                 text-align: center;
             }
 
+            .card-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
             .stats-grid {
                 grid-template-columns: 1fr;
             }
@@ -557,7 +569,6 @@
     <!-- Search & Filter Section -->
     <div class="container">
         <div class="search-filter-section">
-            <!-- Form now only triggers filtering when submitted -->
             <form class="search-form" id="tutorSearchForm">
                 <div class="input-group">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -565,16 +576,17 @@
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-book"></i>
+                    <!-- Values updated to properly include spaces for search matches -->
                     <select class="filter-select" id="subjectFilter">
                         <option value="">Subject</option>
-                        <option value="socialscience">Social Science</option>
+                        <option value="social science">Social Science</option>
                         <option value="bengali">Bengali</option>
                         <option value="mathematics">Mathematics</option>
                         <option value="physics">Physics</option>
                         <option value="chemistry">Chemistry</option>
                         <option value="biology">Biology</option>
                         <option value="english">English</option>
-                        <option value="computerscience">Computer Science</option>
+                        <option value="computer science">Computer Science</option>
                     </select>
                 </div>
                 <div class="input-group">
@@ -594,7 +606,7 @@
         <div class="container">
             <h2 class="section-title">Featured Tutors</h2>
             
-            <!-- Modified Anik Datta Card -->
+            <!-- 1. Anik Datta Card (Updated with View Profile button) -->
             <div class="teacher-card">
                 <img src="images/img2025poco.png" alt="Anik Datta" class="teacher-avatar">
                 <div class="teacher-info">
@@ -614,9 +626,10 @@
                     </div>
                     
                     <div class="card-actions">
-                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;">
+                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary">
                             <i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now
                         </a>
+                        <button class="btn btn-outline" onclick="openModal('profileModal1')">View Profile</button>
                     </div>
                 </div>
             </div>
@@ -646,7 +659,7 @@
                         </div>
                     </div>
                     <div class="card-actions">
-                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>
+                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>
                         <button class="btn btn-outline" onclick="openModal('profileModal2')">View Profile</button>
                     </div>
                 </div>
@@ -677,7 +690,7 @@
                         </div>
                     </div>
                     <div class="card-actions">
-                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>           
+                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>           
                         <button class="btn btn-outline" onclick="openModal('profileModal4')">View Profile</button>
                     </div>
                 </div>
@@ -708,7 +721,7 @@
                         </div>
                     </div>
                     <div class="card-actions">
-                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>            
+                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>            
                         <button class="btn btn-outline" onclick="openModal('profileModal5')">View Profile</button>
                     </div>
                 </div>
@@ -739,7 +752,7 @@
                         </div>
                     </div>
                     <div class="card-actions">
-                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary" style="width: 75%; text-align: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>
+                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>
                         <button class="btn btn-outline" onclick="openModal('profileModal3')">View Profile</button>
                     </div>
                 </div>
@@ -770,7 +783,7 @@
                         </div>
                     </div>
                     <div class="card-actions">
-                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>            
+                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>            
                         <button class="btn btn-outline" onclick="openModal('profileModal6')">View Profile</button>
                     </div>
                 </div>
@@ -801,11 +814,45 @@
                         </div>
                     </div>
                     <div class="card-actions">
-                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>            
+                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>            
                         <button class="btn btn-outline" onclick="openModal('profileModal7')">View Profile</button>
                     </div>
                 </div>
             </div>
+
+            <!-- New Teacher Card Placeholder -->
+            <div class="teacher-card">
+                <img src="images/Aranjit Saha.png" alt="New Teacher" class="teacher-avatar">
+                <div class="teacher-info">
+                    <div class="teacher-header">
+                        <div>
+                            <h3 class="teacher-name">Aranjit Saha</h3>
+                            <div class="teacher-subject">Mathematics,Economics,Commerce</div>
+                        </div>
+                        <span class="badge">Available</span>
+                    </div>
+                    <div class="teacher-details">
+                        <div class="detail-item">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span>B.Com,BBA,CA,CS,CMA Foundation & Inter</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-laptop-house"></i>
+                            <span>Offline</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Talllygunge,West Bengal</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>            
+                        <button class="btn btn-outline" onclick="openModal('profileModal8')">View Profile</button>
+                    </div>
+                </div>
+            </div>
+            <!-- End of New Teacher Card -->
+
         </div>
     </section>
 
@@ -856,6 +903,36 @@
     </footer>
 
     <!-- Modals -->
+
+    <!-- Modal 1: Anik Datta -->
+    <div class="modal-overlay" id="profileModal1">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('profileModal1')"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <img src="images/img2025poco.png" class="modal-avatar">
+                <div>
+                    <h2 class="teacher-name">Anik Datta</h2>
+                    <div class="teacher-subject">Maths, Chemistry, Physics, Biology</div>
+                    <span class="badge" style="display: inline-block; margin-top: 8px;">Available</span>
+                </div>
+            </div>
+            <div class="teacher-details" style="grid-template-columns: 1fr;">
+                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications: </strong> M.SC, B.SC (Calcutta University), ICSE (St. Xavier's School)</div>
+                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode: </strong> Offline/Online</div>
+                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location: </strong> Not Provided</div>
+            </div>
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+            <div class="modal-about">
+                <h3>About Teacher</h3>
+                <p>Additional details for this instructor are currently being updated.</p>
+            </div>
+            <div style="margin-top: 24px;">
+                <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Biplab Sir -->
     <div class="modal-overlay" id="profileModal2">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('profileModal2')"><i class="fa-solid fa-xmark"></i></button>
@@ -868,9 +945,9 @@
                 </div>
             </div>
             <div class="teacher-details" style="grid-template-columns: 1fr;">
-                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong>B.Com, B.A, D.El.Ed, B.Ed, MBA</div>
-                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong>Offline/Online</div>
-                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong>West Bengal</div>
+                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong> B.Com, B.A, D.El.Ed, B.Ed, MBA</div>
+                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong> Offline/Online</div>
+                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong> West Bengal</div>
             </div>
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
             <div class="modal-about">
@@ -882,6 +959,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal-overlay" id="profileModal3">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('profileModal3')"><i class="fa-solid fa-xmark"></i></button>
@@ -894,9 +972,9 @@
                 </div>
             </div>
             <div class="teacher-details" style="grid-template-columns: 1fr;">
-                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong>Bengali(Hons)</div>
-                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong>Offline</div>
-                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong>West Benagal</div>
+                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong> Bengali(Hons)</div>
+                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong> Offline</div>
+                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong> West Bengal</div>
             </div>
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
             <div class="modal-about">
@@ -908,6 +986,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal-overlay" id="profileModal4">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('profileModal4')"><i class="fa-solid fa-xmark"></i></button>
@@ -920,9 +999,9 @@
                 </div>
             </div>
             <div class="teacher-details" style="grid-template-columns: 1fr;">
-                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong>MSc Mathematics + BEd,Kerela Ktet category 2,3,Kerela SET Exam</div>
-                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong>Online</div>
-                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong>Kerela</div>
+                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong> MSc Mathematics + BEd,Kerela Ktet category 2,3,Kerela SET Exam</div>
+                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong> Online</div>
+                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong> Kerela</div>
             </div>
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
             <div class="modal-about">
@@ -934,6 +1013,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal-overlay" id="profileModal5">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('profileModal5')"><i class="fa-solid fa-xmark"></i></button>
@@ -946,9 +1026,9 @@
                 </div>
             </div>
             <div class="teacher-details" style="grid-template-columns: 1fr;">
-                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong>MA(English),BA(English)</div>
-                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong>Online/Offline</div>
-                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong>Gobardanga,N24 Pgs,WB</div>
+                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong> MA(English),BA(English)</div>
+                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong> Online/Offline</div>
+                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong> Gobardanga,N24 Pgs,WB</div>
             </div>
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
             <div class="modal-about">
@@ -960,6 +1040,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal-overlay" id="profileModal6">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('profileModal6')"><i class="fa-solid fa-xmark"></i></button>
@@ -972,9 +1053,9 @@
                 </div>
             </div>
             <div class="teacher-details" style="grid-template-columns: 1fr;">
-                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong>MSc (Organic Chemistry) BEd CTET (Paper I & II)</div>
-                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong>Offline/Online</div>
-                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong>Thakurpukur Kolkata,WB</div>
+                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong> MSc (Organic Chemistry) BEd CTET (Paper I & II)</div>
+                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong> Offline/Online</div>
+                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong> Thakurpukur Kolkata,WB</div>
             </div>
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
             <div class="modal-about">
@@ -986,6 +1067,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal-overlay" id="profileModal7">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('profileModal7')"><i class="fa-solid fa-xmark"></i></button>
@@ -998,14 +1080,42 @@
                 </div>
             </div>
             <div class="teacher-details" style="grid-template-columns: 1fr;">
-                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong>BCA Final Year Purishing</div>
-                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong>Online</div>
-                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong>West Bengal</div>
+                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications:</strong> BCA Final Year Purishing</div>
+                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode:</strong> Online</div>
+                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location:</strong> West Bengal</div>
             </div>
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
             <div class="modal-about">
                 <h3>About Teacher</h3>
                 <p>Informations will be provided soon!</p>
+            </div>
+            <div style="margin-top: 24px;">
+                <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 8: New Teacher Placeholder Modal -->
+    <div class="modal-overlay" id="profileModal8">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('profileModal8')"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <img src="images/Aranjit Saha.png" class="modal-avatar">
+                <div>
+                    <h2 class="teacher-name">Aranjit Saha</h2>
+                    <div class="teacher-subject">Mathematics,Economics,Commerce</div>
+                    <span class="badge" style="display: inline-block; margin-top: 8px;">Available</span>
+                </div>
+            </div>
+            <div class="teacher-details" style="grid-template-columns: 1fr;">
+                <div class="detail-item"><i class="fa-solid fa-graduation-cap"></i><strong>Qualifications: </strong>B.Com,BBA,CA,CS,CMA Foundation & Inter</div>
+                <div class="detail-item"><i class="fa-solid fa-laptop-house"></i><strong>Teaching Mode: </strong>Offline</div>
+                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><strong>Location: </strong>Tallygunge, West Bengal</div>
+            </div>
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+            <div class="modal-about">
+                <h3>About Teacher</h3>
+                <p>Details will be updated later!</p>
             </div>
             <div style="margin-top: 24px;">
                 <a href="https://wa.me/918927319817" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Tutor Now</a>
@@ -1055,7 +1165,7 @@
         }
     });
 
-    // Filter Logic - Now Only executes On Search Submit
+    // Filter Logic - Executes On Search Submit
     const searchForm = document.getElementById('tutorSearchForm');
     searchForm.addEventListener('submit', function(event) {
         event.preventDefault(); // Stop page from refreshing
